@@ -40,8 +40,8 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(params[:topic])
-
+    @topic = current_user.topics.new(params[:topic])
+		
     respond_to do |format|
       if @topic.save
         format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
